@@ -7,13 +7,42 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromUserData from './+state/user-data.reducer';
+import { UserDataEffects } from './+state/user-data.effects';
+import { UserDataFacade } from './+state/user-data.facade';
+import { NxModule } from '@nrwl/angular';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FlexLayoutModule,
-    HttpClientModule
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    NxModule.forRoot(),
+    StoreModule.forRoot(
+      {},
+      {
+        metaReducers: !environment.production ? [] : [],
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true,
+        },
+      }
+    ),
+    EffectsModule.forRoot([UserDataEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreModule.forFeature(
+      fromUserData.USER_DATA_FEATURE_KEY,
+      fromUserData.userDataReducer
+    ),
   ],
-  providers: [],
+  providers: [UserDataFacade],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
