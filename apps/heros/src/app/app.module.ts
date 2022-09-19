@@ -15,6 +15,9 @@ import { UserDataFacade } from './+state/user-data.facade';
 import { NxModule } from '@nrwl/angular';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
@@ -23,6 +26,9 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
     HttpClientModule,
     NxModule.forRoot(),
     StoreModule.forRoot(

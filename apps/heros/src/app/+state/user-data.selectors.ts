@@ -32,13 +32,8 @@ export const getUserDataEntities = createSelector(
   (state: UserDataState) => selectEntities(state)
 );
 
-export const getSelectedId = createSelector(
+export const getUser = createSelector(
   getUserDataState,
-  (state: UserDataState) => state.selectedId
+  (state: UserDataState) => state.userData
 );
 
-export const getSelected = createSelector(
-  getUserDataEntities,
-  getSelectedId,
-  (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
-);

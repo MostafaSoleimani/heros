@@ -1,11 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-    constructor(private http: HttpClient) {}
-    
+    constructor(private http: HttpClient) { }
+
     login(data: any) {
-        return this.http.post('/api/auth/signin', data)
+        return this.http.post<{access_token: string}>('/api/auth/signin', data).pipe(
+            tap(res => localStorage.setItem('access_token', res.access_token))
+        )
+    }
+
+    isAuthenticated(): boolean {
+        return !!localStorage.getItem('access_token');
     }
 }

@@ -13,7 +13,6 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule, 
     HerosRoutingModule,
-    MatToolbarModule,
     MatIconModule,
     MatButtonModule
   ],

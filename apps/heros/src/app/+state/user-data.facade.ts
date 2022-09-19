@@ -13,7 +13,6 @@ export class UserDataFacade {
    */
   loaded$ = this.store.pipe(select(UserDataSelectors.getUserDataLoaded));
   allUserData$ = this.store.pipe(select(UserDataSelectors.getAllUserData));
-  selectedUserData$ = this.store.pipe(select(UserDataSelectors.getSelected));
 
   constructor(private readonly store: Store) {}
 

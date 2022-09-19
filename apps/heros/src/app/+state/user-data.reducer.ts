@@ -7,7 +7,7 @@ import { UserDataEntity } from './user-data.models';
 export const USER_DATA_FEATURE_KEY = 'userData';
 
 export interface UserDataState extends EntityState<UserDataEntity> {
-  selectedId?: string | number; // which UserData record has been selected
+  userData?: UserDataEntity; // which UserData record has been selected
   loaded: boolean; // has the UserData list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -33,10 +33,11 @@ const reducer = createReducer(
     error: null,
   })),
   on(UserDataActions.loadUserDataSuccess, (state, { userData }) =>
-    userDataAdapter.setAll(userData, { ...state, loaded: true })
+    userDataAdapter.setAll([userData], { ...state, loaded: true })
   ),
   on(UserDataActions.loadUserDataFailure, (state, { error }) => ({
     ...state,
+    loaded: false,
     error,
   }))
 );
