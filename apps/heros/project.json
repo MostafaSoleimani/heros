@@ -5,9 +5,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/heros",
         "index": "apps/heros/src/index.html",
@@ -15,10 +13,7 @@
         "polyfills": "apps/heros/src/polyfills.ts",
         "tsConfig": "apps/heros/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/heros/src/favicon.ico",
-          "apps/heros/src/assets"
-        ],
+        "assets": ["apps/heros/src/favicon.ico", "apps/heros/src/assets"],
         "styles": [
           "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
           "apps/heros/src/styles.scss"
@@ -68,7 +63,10 @@
           "browserTarget": "heros:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/heros/proxy.conf.json"
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -79,17 +77,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "apps/heros/**/*.ts",
-          "apps/heros/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/heros/**/*.ts", "apps/heros/**/*.html"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/heros"
-      ],
+      "outputs": ["coverage/apps/heros"],
       "options": {
         "jestConfig": "apps/heros/jest.config.ts",
         "passWithNoTests": true
