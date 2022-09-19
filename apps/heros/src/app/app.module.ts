@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -18,7 +19,7 @@ import { environment } from '../environments/environment';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
   imports: [
@@ -29,7 +30,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatSlideToggleModule,
     HttpClientModule,
+    ReactiveFormsModule,
     NxModule.forRoot(),
     StoreModule.forRoot(
       {},
