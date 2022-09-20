@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="3229663625168733850" datatype="html">
+        <source>Marvel Heros</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/heros/src/app/app.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2454050363478003966" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/heros/src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="160640128319879431" datatype="html">
+        <source>User Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/heros/src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1431416938026210429" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/heros/src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6542676228301148432" datatype="html">
+        <source>login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/heros/src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1619344176447657437" datatype="html">
+        <source>LIKE</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/heros/src/app/pages/heros/hero-detail/hero-detail.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9219888125536520293" datatype="html">
+        <source>SHARE</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/heros/src/app/pages/heros/hero-detail/hero-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1578009514947763878" datatype="html">
+        <source>Stories: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/heros/src/app/pages/heros/heros/heros.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6245775011648070887" datatype="html">
+        <source>Series: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/heros/src/app/pages/heros/heros/heros.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

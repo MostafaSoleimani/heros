@@ -1,9 +1,11 @@
 <mat-toolbar>
-    <span>Marvel Heros</span>
+    <span i18n routerLink="./heros">Marvel Heros</span>
     <span class="example-spacer"></span>
     {{userData?.name}}
+    <span class="example-spacer"></span>
     <mat-icon class="mr-8" *ngIf="className === 'darkMode'" (click)="changeTheme('light')">wb_sunny</mat-icon>
     <mat-icon *ngIf="className !== 'darkMode'" (click)="changeTheme('dark')">bedtime</mat-icon>
 </mat-toolbar>
-
-<router-outlet></router-outlet>
+<main  class="mat-app-background">
+    <router-outlet></router-outlet>
+</main>

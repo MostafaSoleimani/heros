@@ -9,7 +9,7 @@ export class UserService {
         if (!user) {
             throw new ForbiddenException('Name Does not exists'); 
         }
-        const cloneUser = {...user};
+        const cloneUser = JSON.parse(JSON.stringify(user));
         delete cloneUser.password;
         return cloneUser;
     }

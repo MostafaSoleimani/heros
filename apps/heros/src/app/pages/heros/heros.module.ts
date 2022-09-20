@@ -11,9 +11,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CardNamePipe } from '../../core/pipe/card-name.pipe';
+import { HerosContainerComponent } from './heros-container/heros-container.component';
 
 @NgModule({
-  declarations: [HerosComponent, HeroDetailComponent, CardNamePipe],
+  declarations: [
+    HerosComponent,
+    HeroDetailComponent,
+    CardNamePipe,
+    HerosContainerComponent,
+  ],
   imports: [
     CommonModule,
     HerosRoutingModule,
@@ -22,7 +28,7 @@ import { CardNamePipe } from '../../core/pipe/card-name.pipe';
     MatCardModule,
     MatFormFieldModule,
     FlexLayoutModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
 })
-export class HerosModule { }
+export class HerosModule {}

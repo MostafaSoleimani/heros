@@ -2,6 +2,13 @@
   "projectType": "application",
   "sourceRoot": "apps/heros/src",
   "prefix": "marvel",
+  "i18n": {
+    "sourceLocale": "en-US",
+    "locales": {
+        "fa": "apps/heros/src/locale/messages.fa.xlf",
+        "en": "apps/heros/src/locale/messages.en.xlf"
+    }
+  },
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -18,7 +25,9 @@
           "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
           "apps/heros/src/styles.scss"
         ],
-        "scripts": []
+        "scripts": [],
+        "i18nMissingTranslation": "warning",
+        "localize": ["fa", "en"]
       },
       "configurations": {
         "production": {
@@ -42,6 +51,9 @@
           ],
           "outputHashing": "all"
         },
+        "fa": {
+          "localize": ["fa"]
+        },
         "development": {
           "buildOptimizer": false,
           "optimization": false,
@@ -61,6 +73,9 @@
         },
         "development": {
           "browserTarget": "heros:build:development"
+        },
+        "fa": {
+          "browserTarget": "heros:build:development,fa"
         }
       },
       "defaultConfiguration": "development",

@@ -1,8 +1,7 @@
-<div fxLayout="row wrap">
+<div fxLayout="row wrap" class="heros" >
     <ng-container *ngFor="let hero of heros; template: heroTemp"></ng-container>
-
 </div>
-<mat-paginator *ngIf="heros.length > 0" [length]="100" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)"
+<mat-paginator *ngIf="heros.length > 0" [length]="countAll" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)"
     aria-label="Select page">
 </mat-paginator>
 
@@ -16,16 +15,12 @@
                 <mat-card-subtitle>
                     <mat-label>{{hero.modified | date}}</mat-label>
                     <br>
-                    <mat-label>Stories: {{hero.stories.available}}</mat-label>
+                    <mat-label><ng-container i18n>Stories: </ng-container>{{hero.stories.available}}</mat-label>
                     <br>
-                    <mat-label>Series: {{hero.series.available}}</mat-label>
+                    <mat-label><ng-container i18n>Series: </ng-container>{{hero.series.available}}</mat-label>
                 </mat-card-subtitle>
                 <img mat-card-md-image [src]="hero.thumbnail.path + '.' + hero.thumbnail.extension">
-
             </mat-card-title-group>
-            <mat-card-content>
-
-            </mat-card-content>
         </mat-card>
     </div>
 </ng-template>

@@ -1,5 +1,25 @@
+:host {
+  height: calc(100% - 56px);
+  overflow: auto;
+}
+.heros {
+  height: calc(100% - 64px);
+  overflow: auto;
+}
+
+
+@media (max-width: 720px) {
+
+  .heros {
+    height: calc(100% - 56px);
+    overflow: auto;
+  }
+}
+mat-paginator {
+  margin: 0.3rem;
+}
 .card-container {
-  padding: 1rem;
+  padding: .3rem;
 
   mat-card {
     cursor: pointer;

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
 import { of, switchMap } from 'rxjs';
 import { UserDataService } from '../core/service/user-data.service';
 
 import * as UserDataActions from './user-data.actions';
-import * as UserDataFeature from './user-data.reducer';
 
 @Injectable()
 export class UserDataEffects {
@@ -33,8 +32,8 @@ export class UserDataEffects {
     fetch({
       run: (action) => {
         // Your custom service 'load' logic goes here. For now just return a success action...
-        return this.userDataService.get(action.name).pipe(
-          switchMap(x => of(UserDataActions.loadUserDataSuccess({ userData: x })))
+        return this.userDataService.get().pipe(
+          switchMap(userData => of(UserDataActions.loadUserDataSuccess({ userData })))
         );
       },
       onError: (action, error) => {

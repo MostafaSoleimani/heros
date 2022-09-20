@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import * as UserDataActions from './user-data.actions';
-import * as UserDataFeature from './user-data.reducer';
 import * as UserDataSelectors from './user-data.selectors';
 
 @Injectable()
