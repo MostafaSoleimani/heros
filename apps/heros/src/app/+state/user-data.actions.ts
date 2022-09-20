@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { UserDataEntity } from './user-data.models';
 
 export const initUserData = createAction('[UserData Page] Init');
+export const getUserData = createAction('[UserData Page] Init', props<{ name: string }>());
 
 export const loadUserDataSuccess = createAction(
   '[UserData/API] Load UserData Success',

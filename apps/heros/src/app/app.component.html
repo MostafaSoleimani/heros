@@ -1,10 +1,9 @@
 <mat-toolbar>
     <span>Marvel Heros</span>
     <span class="example-spacer"></span>
-    <mat-icon class="mr-8">brightness_5</mat-icon>
-  <mat-slide-toggle [formControl]="toggleControl" class="mr-8">
-  </mat-slide-toggle>
-  <mat-icon>bedtime</mat-icon>
+    {{userData?.name}}
+    <mat-icon class="mr-8" *ngIf="className === 'darkMode'" (click)="changeTheme('light')">wb_sunny</mat-icon>
+    <mat-icon *ngIf="className !== 'darkMode'" (click)="changeTheme('dark')">bedtime</mat-icon>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

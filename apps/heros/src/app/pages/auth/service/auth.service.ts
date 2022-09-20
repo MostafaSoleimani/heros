@@ -13,6 +13,7 @@ export class AuthService {
     }
 
     isAuthenticated(): boolean {
+        console.log('access_token:   ', localStorage.getItem('access_token'))
         return !!localStorage.getItem('access_token');
     }
 }

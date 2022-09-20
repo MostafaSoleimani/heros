@@ -1,5 +1,9 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { UserDataState } from './+state/user-data.reducer';
+import { Store, select } from '@ngrx/store';
+import { getAllUserData } from './+state/user-data.selectors';
+import { UserDataEntity } from './+state/user-data.models';
 
 @Component({
   selector: 'marvel-root',
@@ -8,11 +12,13 @@ import { FormControl } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   title = 'heros';
+  userData?: UserDataEntity;
   @HostBinding('class') className = '';
 
   toggleControl = new FormControl(false);
 
-  constructor() { }
+  // getAllUserData
+  constructor(private store: Store<UserDataState>){}
 
   ngOnInit(): void {
     this.toggleControl.valueChanges.subscribe({
@@ -21,5 +27,14 @@ export class AppComponent implements OnInit {
         this.className = darkMode ? darkClassName : '';
       }
     });
+    this.store.select(getAllUserData).subscribe(userData => {
+      console.log('user data:    ', userData);
+      this.userData = userData[0]
+    })
+  }
+
+  changeTheme(theme: 'dark' | 'light') {
+    const darkClassName = 'darkMode';
+    this.className = theme === 'dark' ? darkClassName : '';
   }
 }

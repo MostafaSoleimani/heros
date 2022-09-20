@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { Store, select } from '@ngrx/store';
 import { UserDataState } from '../../../+state/user-data.reducer';
+import { getUserData } from '../../../+state/user-data.actions';
+import { isString } from '../../../core/utils/type-assertion';
 
 @Component({
   selector: 'marvel-login',
@@ -23,15 +25,19 @@ export class LoginComponent {
   });
 
   login() {
-    this.authService.login(this.loginForm.value).subscribe({
-      next: res => {
-        console.log('res:   ', res );
-        this.router.navigate(['/heros']);
-      },
-      error: err => {
-        console.log('err:   ', err );
-      }
-    })
+    const { userName, password } = this.loginForm.value;
+    if (isString(userName) && isString(password)) {
+      this.authService.login({ userName, password }).subscribe({
+        next: res => {
+          console.log('res:   ', res );
+          this.router.navigate(['/heros']);
+          this.store.dispatch(getUserData({name: userName}))
+        },
+        error: err => {
+          console.log('err:   ', err );
+        }
+      })
+    }
   }
 
 }
