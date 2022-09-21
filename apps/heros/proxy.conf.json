@@ -1,6 +1,7 @@
 {
   "/api": {
     "target": "https://ngm-heros.herokuapp.com",
-    "secure": false
+    "secure": false,
+    "pathRewrite": {"^/api" : ""}
   }
 }

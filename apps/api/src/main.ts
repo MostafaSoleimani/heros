@@ -19,7 +19,7 @@ async function bootstrap() {
   );
   app.enableCors({
     allowedHeaders: ['content-type', 'Authorization '],
-    origin: 'http://localhost:4200',
+    origin: ['http://localhost:4200', 'https://mostafasoleimani.github.io'],
     credentials: true,
   });
   const port = process.env.PORT || 3333;

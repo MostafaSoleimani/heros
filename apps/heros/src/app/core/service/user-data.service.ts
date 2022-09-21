@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserDataEntity } from '../../+state/user-data.models';
@@ -15,6 +16,6 @@ export class UserDataService {
       'content-type': 'application/json',
       'Authorization': Authorization
     });
-    return this.http.get<UserDataEntity>('/api/user', {headers});
+    return this.http.get<UserDataEntity>(environment.apiUrl + '/api/user', {headers});
   }
 }

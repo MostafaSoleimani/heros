@@ -38,6 +38,7 @@
         ]
       },
       "configurations": {
+        "proxyConfig": "apps/heros/proxy.conf.json",
         "production": {
           "budgets": [
             {
