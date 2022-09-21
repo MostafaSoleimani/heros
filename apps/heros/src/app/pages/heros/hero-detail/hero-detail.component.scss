@@ -5,12 +5,36 @@
     min-height: calc(100% - 56px);
 }
 
+.back-icon {
+    position: fixed;
+    top: 74px;
+    left: 10px;
+}
+
 
 .example-card {
-    max-width: 400px;
+    // max-width: 400px;
     max-height: calc(100% - 64px);
+    img{
+        max-height: 60vh;
+        max-width: 100%;
+        margin: unset !important;
+    }
 }
 
 .example-header-image {
     background-size: cover;
+}
+.example-card-gt-md {
+    padding: 1rem;
+    .img-gt-md {
+        max-height: 400px;
+        margin: unset !important;
+    }
+    
+    mat-card-title {
+        min-width: 20rem;
+        margin-bottom: 1rem;
+    }
+
 }

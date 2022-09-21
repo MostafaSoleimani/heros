@@ -7,6 +7,7 @@ main {
 
 .span-deactive {
   display: none;
+  width: 0px;
 }
 
 @media (max-width: 720px) {
