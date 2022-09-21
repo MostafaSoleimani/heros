@@ -5,6 +5,10 @@ main {
   flex: 1 1 auto;
 }
 
+.span-deactive {
+  display: none;
+}
+
 @media (max-width: 720px) {
   main {
     height: calc(100% - 56px);

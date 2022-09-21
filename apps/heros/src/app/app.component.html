@@ -1,5 +1,6 @@
 <mat-toolbar>
-    <span i18n routerLink="./heros">Marvel Heros</span>
+    <span i18n routerLink="./heros" routerLinkActive="span-deactive">Marvel Heros</span>
+    <mat-icon routerLink="./auth" routerLinkActive="span-deactive" (click)="logout()">exit_to_app</mat-icon>
     <span class="example-spacer"></span>
     {{userData?.name}}
     <span class="example-spacer"></span>

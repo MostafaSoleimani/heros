@@ -4,13 +4,12 @@ import { USERS_DB } from '../auth/model/users.model';
 @Injectable()
 export class UserService {
 
-    getUser(name: string){
-        const user = USERS_DB.find(x => x.name === name);
+    getUser(userName: string){
+        const user = USERS_DB.find(x => x.name === userName);
         if (!user) {
             throw new ForbiddenException('Name Does not exists'); 
         }
-        const cloneUser = JSON.parse(JSON.stringify(user));
-        delete cloneUser.password;
-        return cloneUser;
+        const {name, email, age} = user;
+        return {name, email, age};
     }
 }

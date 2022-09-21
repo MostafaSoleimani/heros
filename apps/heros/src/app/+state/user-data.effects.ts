@@ -18,40 +18,28 @@ export class UserDataEffects {
         map(userData => UserDataActions.loadUserDataSuccess({ userData })),
         catchError((error: any) => of(UserDataActions.loadUserDataFailure({ error })))
       ))
-      // fetch({
-      //   run: (action) => {
-      //     // Your custom service 'load' logic goes here. For now just return a success action...
-      //     return UserDataActions.loadUserDataSuccess({ userData: {name: '', age: 0, email: ''} });
-      //   },
-      //   onError: (action, error) => {
-      //     console.error('Error', error);
-      //     return UserDataActions.loadUserDataFailure({ error });
-      //   },
-      // })
     )
   );
 
   fetch$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(UserDataActions.getUserData),
-    switchMap(() => this.userDataService.get().pipe(
-      map(userData => UserDataActions.loadUserDataSuccess({ userData })),
-      catchError((error: any) => of(UserDataActions.loadUserDataFailure({ error })))
-    ))
-    // fetch({
-    //   run: () => {
-    //     // Your custom service 'load' logic goes here. For now just return a success action...
-    //     return this.userDataService.get().pipe(
-    //       switchMap((userData: UserDataEntity) => new of(UserDataActions.loadUserDataSuccess({ userData })))
-    //     );
-    //   },
-    //   onError: (_action: unknown, error: string) => {
-    //     console.error('Error', error);
-    //     return UserDataActions.loadUserDataFailure({ error });
-    //   },
-    // })
-  )
-);
+    this.actions$.pipe(
+      ofType(UserDataActions.getUserData),
+      switchMap(() => this.userDataService.get().pipe(
+        map(userData => UserDataActions.loadUserDataSuccess({ userData })),
+        catchError((error: any) => of(UserDataActions.loadUserDataFailure({ error })))
+      ))
+    )
+  );
 
-  constructor(private readonly actions$: Actions, private userDataService:UserDataService) {}
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserDataActions.logout),
+      switchMap(() => {
+        localStorage.removeItem('access_token');
+        return of(UserDataActions.loadUserDataSuccess({ userData:{name: '', email: '', age: 0 }}))
+      })
+    )
+  );
+
+  constructor(private readonly actions$: Actions, private userDataService: UserDataService) { }
 }

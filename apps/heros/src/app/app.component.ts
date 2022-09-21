@@ -1,5 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { logout } from './+state/user-data.actions';
 import { UserDataEntity } from './+state/user-data.models';
 import { UserDataState } from './+state/user-data.reducer';
 import { getAllUserData } from './+state/user-data.selectors';
@@ -29,5 +30,9 @@ export class AppComponent implements OnInit{
     const darkClassName = 'darkMode';
     this.className = theme === 'dark' ? darkClassName : '';
     localStorage.setItem('theme', theme)
+  }
+
+  logout() {
+    this.store.dispatch(logout())
   }
 }
