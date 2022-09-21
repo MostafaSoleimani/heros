@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserDataEntity } from '../../+state/user-data.models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,6 @@ export class UserDataService {
       'content-type': 'application/json',
       'Authorization': Authorization
     });
-    return this.http.get<{name: string, email: string, age: number}>('/api/user', {headers});
+    return this.http.get<UserDataEntity>('/api/user', {headers});
   }
 }
