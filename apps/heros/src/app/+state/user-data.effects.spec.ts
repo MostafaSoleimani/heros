@@ -31,7 +31,7 @@ describe('UserDataEffects', () => {
       actions = hot('-a-|', { a: UserDataActions.initUserData() });
 
       const expected = hot('-a-|', {
-        a: UserDataActions.loadUserDataSuccess({ userData: [] }),
+        a: UserDataActions.loadUserDataSuccess({ userData: {name: '', age: 0, email: ''} }),
       });
 
       expect(effects.init$).toBeObservable(expected);

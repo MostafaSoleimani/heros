@@ -7,7 +7,7 @@ import { UserDataEntity } from '../../+state/user-data.models';
   providedIn: 'root'
 })
 export class UserDataService {
-
+  ROOT_URl = environment.apiUrl
   constructor(private http: HttpClient) {}
 
   get() {
@@ -16,6 +16,6 @@ export class UserDataService {
       'content-type': 'application/json',
       'Authorization': Authorization
     });
-    return this.http.get<UserDataEntity>(environment.apiUrl + '/api/user', {headers});
+    return this.http.get<UserDataEntity>(this.ROOT_URl + '/api/user', {headers});
   }
 }

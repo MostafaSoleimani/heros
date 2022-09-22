@@ -9,17 +9,15 @@ import {
 } from './user-data.reducer';
 
 describe('UserData Reducer', () => {
-  const createUserDataEntity = (id: string, name = ''): UserDataEntity => ({
-    id,
-    name: name || `name-${id}`,
+  const createUserDataEntity = (name = ''): UserDataEntity => ({
+    name: name,
+    email: '',
+    age: 0
   });
 
   describe('valid UserData actions', () => {
     it('loadUserDataSuccess should return the list of known UserData', () => {
-      const userData = [
-        createUserDataEntity('PRODUCT-AAA'),
-        createUserDataEntity('PRODUCT-zzz'),
-      ];
+      const userData = createUserDataEntity('PRODUCT-AAA');
       const action = UserDataActions.loadUserDataSuccess({ userData });
 
       const result: UserDataState = userDataReducer(
