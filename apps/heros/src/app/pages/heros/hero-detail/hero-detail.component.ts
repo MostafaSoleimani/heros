@@ -1,7 +1,7 @@
-import { IApiResult, IHero } from './../../../core/model/heros.model';
-import { Component, ElementRef, OnInit, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MarvelHerosService } from '../../../core/service/marvel-heros.service';
+import { IApiResult, IHero } from './../../../core/model/heros.model';
 
 @Component({
   selector: 'marvel-hero-detail',
@@ -12,7 +12,7 @@ export class HeroDetailComponent implements OnInit {
   heroId;
   hero?: IHero;
   constructor(
-    private activatedRoute: ActivatedRoute, 
+    activatedRoute: ActivatedRoute, 
     private marvelHerosService: MarvelHerosService
     ) {
     this.heroId = activatedRoute.snapshot.params['id'];

@@ -1,15 +1,6 @@
-import { getTestBed, TestBed } from '@angular/core/testing';
-
-import { MarvelHerosService } from './marvel-heros.service';
-
-
-
-
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
-// Other imports
-
+import { of } from 'rxjs';
 import { IApiResult, IHero } from '../model/heros.model';
+import { MarvelHerosService } from './marvel-heros.service';
 
 const DUMMY_HEROS: IApiResult<IHero> = {
   attributionHTML: '',
@@ -41,43 +32,32 @@ const DUMMY_HEROS: IApiResult<IHero> = {
   status: 'OK'
 };
 describe('MarvelHerosService', () => {
-  let service: MarvelHerosService;
-  let httpMock: HttpTestingController;
-  let injector;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [MarvelHerosService]
-    });
-    injector = getTestBed();
-    service = injector.inject(MarvelHerosService);
-    httpMock = injector.inject(HttpTestingController);
+  const httpSpy: any = {
+    get: jest.fn()
+  }
+  const service = new MarvelHerosService(httpSpy);
+  const marvelUrl = 'https://gateway.marvel.com/v1/public/characters';
+  const apikey = 'f58792977ff894aa9698d09d56419178';
+  it('Should get all heros', () => {
+    const queryParams = {
+      apikey
+    }
+    jest.spyOn(httpSpy, 'get').mockReturnValue(of(DUMMY_HEROS))
+    service.getAll();
+    expect(httpSpy.get).toBeCalled();
+    expect(httpSpy.get).toHaveBeenCalledWith(marvelUrl, { params: queryParams });
+
   });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
-
-  describe('MarvelHerosService Fetch heros', () => {
-    it('be able to retrieve Heros from the API bia GET', () => {
-      service.getAll().subscribe(heros => {
-        expect(heros.data.results.length).toBe(1);
-        expect(heros).toEqual(DUMMY_HEROS);
-      });
-      const request = httpMock.expectOne(`${service.ROOT_URl}/characters?apikey=f58792977ff894aa9698d09d56419178`);
-      expect(request.request.method).toBe('GET');
-      request.flush(DUMMY_HEROS);
-    });
-
-    it('be able to retrieve One Hero from the API bia GET', () => {
-      service.get('1').subscribe(heros => {
-        expect(heros.data.results.length).toBe(1);
-        expect(heros).toEqual(DUMMY_HEROS);
-      });
-      const request = httpMock.expectOne(`${service.ROOT_URl}/characters/1?apikey=f58792977ff894aa9698d09d56419178`);
-      expect(request.request.method).toBe('GET');
-      request.flush(DUMMY_HEROS);
-    });
+  it('Should be able to get one hero', () => {
+    const queryParams = {
+      apikey
+    }
+    const id = 'someId'
+    jest.spyOn(httpSpy, 'get').mockReturnValue(of(DUMMY_HEROS))
+    service.get(id);
+    expect(httpSpy.get).toBeCalled();
+    expect(httpSpy.get).toHaveBeenCalledWith(`${marvelUrl}/${id}`, { params: queryParams });
   });
 
 });

@@ -1,5 +1,4 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { getTestBed, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { AuthService } from './auth.service';
 
 
@@ -7,40 +6,20 @@ const DUMMY_DATA = {
     "name": "niloofar",
     "email": "niloofar@baam.sadad.co.ir",
     "age": 30
-  }
-
-describe('AuthService', () => {
-    let service: AuthService;
-    let httpMock: HttpTestingController;
-    let injector;
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [AuthService]
-        });
-        injector = getTestBed();
-        service = injector.inject(AuthService);
-        httpMock = injector.inject(HttpTestingController);
-        
+}
+describe('MarvelHerosService', () => {
+    const httpSpy: any = {
+        post: jest.fn()
+    }
+    const service = new AuthService(httpSpy);
+    it('Should be able to retrieve User Data from the API', () => {
+        const loginReq = {
+            userName: 'niloofar',
+            password: '123456'
+        }
+        jest.spyOn(httpSpy, 'post').mockReturnValue(of(DUMMY_DATA))
+        service.login(loginReq);
+        expect(httpSpy.post).toBeCalled();
+        expect(httpSpy.post).toHaveBeenCalledWith(service.ROOT_URl + '/api/auth/signin', loginReq);
     });
-
-    afterEach(() => {
-        httpMock.verify();
-    });
-
-
-    describe('AuthService Login', () => {
-        it('should be created', () => {
-            expect(service).toBeTruthy();
-        });
-        it('be able to Login via Post', () => {
-            service.login({ userName: 'niloofar', password: '123456' }).subscribe(userData => {
-                expect(userData).toEqual(DUMMY_DATA);
-            });
-            const request = httpMock.expectOne(`${service.ROOT_URl}/api/auth/signin`);
-            expect(request.request.method).toBe('POST');
-            request.flush(DUMMY_DATA);
-        });
-    });
-
 });
