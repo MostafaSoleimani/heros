@@ -25,7 +25,6 @@ export class LoginComponent {
     if (isString(userName) && isString(password)) {
       this.authService.login({ userName, password }).subscribe({
         next: res => {
-          console.log('res:   ', res );
           this.router.navigate(['/heros']);
         },
         error: err => {

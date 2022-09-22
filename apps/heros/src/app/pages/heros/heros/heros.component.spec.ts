@@ -4,9 +4,10 @@ import { IApiResult, IHero } from '../../../core/model/heros.model';
 import { CardNamePipe } from '../../../core/pipe/card-name.pipe';
 import { MarvelHerosService } from '../../../core/service/marvel-heros.service';
 import { MaterialModule } from '../../../material/material.module';
-import { HerosRoutingModule } from '../heros-routing.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { HerosComponent } from './heros.component';
+import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 
 const DUMMY_HEROS: IApiResult<IHero> = {
   attributionHTML: '',
@@ -75,7 +76,17 @@ describe('HerosComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [HerosComponent, CardNamePipe],
       providers: [{provide: MarvelHerosService, useValue: fakeMarvelService}],
-      imports: [MaterialModule, HerosRoutingModule]
+      imports: [MaterialModule, RouterTestingModule.withRoutes([
+        {
+          path: ':id',
+          component: HeroDetailComponent
+        },
+        {
+          path: '**',
+          redirectTo: '',
+          pathMatch: 'full'
+        }
+       ])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HerosComponent);
