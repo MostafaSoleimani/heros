@@ -13,7 +13,7 @@ You can find the demo here.
 ## Frontend Demos
 
 - [Github Pages Persian Demo](https://mostafasoleimani.github.io/heros/fa)
-- [Github Pages English Demo](https://mostafasoleimani.github.io/heros/fa)
+- [Github Pages English Demo](https://mostafasoleimani.github.io/heros/en)
 
 ## Backend
 
