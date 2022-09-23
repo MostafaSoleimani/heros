@@ -20,7 +20,6 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.marvelHerosService.get(this.heroId).subscribe((res: IApiResult<IHero>) => {
-      console.log('hero:   ', res)
       this.hero = res.data.results[0];
     })
   }
