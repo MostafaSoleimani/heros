@@ -1,11 +1,12 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginComponent } from './login.component';
-import { MaterialModule } from '../../../material/material.module';
 import { of } from 'rxjs';
+import { MaterialModule } from '../../../material/material.module';
 import { AuthService } from '../service/auth.service';
+import { LoginComponent } from './login.component';
+
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -31,7 +32,7 @@ describe('LoginComponent', () => {
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -41,17 +42,15 @@ describe('LoginComponent', () => {
   it('Should have not call login', () => {
     jest.spyOn(fakeAuthService, 'login').mockReturnValue(of());
     component.login();
-    fixture.detectChanges();
     expect(fakeAuthService.login).not.toHaveBeenCalled();
   })
 
   it('Should have call login', () => {
-    jest.spyOn(fakeAuthService, 'login').mockReturnValue(of());
-    jest.spyOn(fakeRouter, 'navigate').mockReturnValue(of());
+    jest.spyOn(fakeAuthService, 'login').mockReturnValue(of('something'));
+    jest.spyOn(fakeRouter, 'navigate');
     component.loginForm.patchValue({userName: 'niloofar', password: '123456'});
     component.login();
     expect(fakeAuthService.login).toHaveBeenCalled();
-    fixture.detectChanges();
     expect(fakeRouter.navigate).toHaveBeenCalledWith(['/heros']);
   })
 });

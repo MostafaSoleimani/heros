@@ -1,3 +1,4 @@
+import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -17,6 +18,7 @@ const MODULES = [
     MatFormFieldModule,
     FlexLayoutModule,
     MatPaginatorModule,
+    MatInputModule
 ]
 
 @NgModule({

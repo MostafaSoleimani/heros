@@ -10,25 +10,28 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(
-    private authService: AuthService, 
-    private router: Router, 
-    ){}
 
-  loginForm = new FormGroup({
-    userName: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
-  });
+  loginForm: FormGroup;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {
+    this.loginForm = new FormGroup({
+      userName: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+    });
+  }
 
   login() {
     const { userName, password } = this.loginForm.value;
     if (isString(userName) && isString(password)) {
       this.authService.login({ userName, password }).subscribe({
-        next: res => {
+        next: () => {
           this.router.navigate(['/heros']);
         },
         error: err => {
-          console.log('err:   ', err );
+          console.log('err:   ', err);
         }
       })
     }

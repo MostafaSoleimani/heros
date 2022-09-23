@@ -21,7 +21,6 @@ export class AppComponent implements OnInit{
     const theme = localStorage.getItem('theme');
     this.changeTheme(theme == 'dark' ? 'dark' : 'light')
     this.store.select(getAllUserData).subscribe(userData => {
-      console.log('user data:    ', userData);
       this.userData = userData[0]
     });
   }
